@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <title>Expense Tracker</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" ></script>    
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>   
+        <div class="container">
+            <h4 id="name" style="color: blue;"> </h4>
+            <form class="form-inline" id ='addDataForm'>
+                <label for="cost">Item cost</label>
+                <input type="number" id="cost" class="form-control" required>
+                <label for="desc">Item description</label>
+                <input type="text"  id="desc" class="form-control" required>
+                <label for="cate">Choose category</label>
+                <input type="text" id="cate" class="form-control" required>
+                <button class="btn btn-primary" onclick="saveData(event)" >Add expense</button>
+            </form>
+        </div>
+            <div class="container">
+                <p id="add-err-info" style="color: red;"></p>
+            </div>
+            <div class="container" id="premium-button">    
+            </div>
+            <div class="container">
+                <p id="message"></p>
+            </div>
+            <div id="edit">
+            </div>
+            <div class="container">
+                        <h4>Expenses:</h4>
+                        <h4 id="amount" style="color:blueviolet"></h4>
+            </div>
+        <div class="container" >
+            <ul id="list" class="list-group">
+            </ul>
+            <p id='pagination'></p>
+            
+        </div>
+        <div class="container">
+            <p>Expenses per page
+                <select id="no_of_expenses" class="form-control" onchange="no_of_rows(value)">
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="10">10</option>
+                </select>
+            </p>
+        </div>
+        <div class="container">
+                <h4 id="h4" style="color:blueviolet"> <h4>
+                <ul id="lead" class="list-group">
+
+                </ul>
+        </div>   
+        <div class="container">
+            <p>Want to get all expenses in a file  <button id='saveBut' onclick="downloadFile(event)" class="btn btn-info">Save</button></p>
+            <p id="download-info"></p>
+        </div>
+    <script src="./expense-tracker.js"></script>
+    </body>
+</html>

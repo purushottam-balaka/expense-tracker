@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       
+        <title>Login</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-xs-4">
+                <form onsubmit="login_save(event)" >         
+                    <lable >Gmail</lable>
+                    <input type='gmail' name='gmail' class="form-control" size="4" required></input>
+                    <lable>Password</lable>
+                    <input type="password" name="pwd" class="form-control"></input>
+                    <input type='submit' value='Submit' class="btn btn-primary"></input>
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </div>
+        <div class=" container">
+            <p id="add-err-info" style="color: red"></p>
+            New user?
+            &nbsp;
+            <button onclick="signup(event)" class="btn btn-info" > Signup </button>
+            <br>
+            Don't remember password
+            &nbsp;  
+            <button id="forget_pwd" class="btn btn-info">Forget password </button>
+        </div>
+        <script src="login.js"></script>       
+    </body>
+</html>
