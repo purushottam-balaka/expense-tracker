@@ -96,7 +96,7 @@ exports.updateExpense=async(req,res)=>{
         const updated_cost=req.body.cost
         const expense=await Expenses.findOne({where:{id:exp_id}},{transaction:t})
         const prev_cost=expense.cost
-        await expense.update({cost:updated_cost} ,{where:{id:exp_id_id}},{transaction:t})
+        await expense.update({cost:updated_cost} ,{where:{id:exp_id}},{transaction:t})
         const user=await Users.findOne({where:{id:req.user.id}})
         const old_total=user.totalExpense
         const new_total=Number(old_total)+Number(updated_cost)-Number(prev_cost)
