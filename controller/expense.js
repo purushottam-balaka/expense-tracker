@@ -92,12 +92,14 @@ exports.deleteExpense=async(req,res,next)=>{
 exports.updateExpense=async(req,res)=>{
     const t=await db.transaction()
     try{
-        const edit_id= req.params.id
+        const exp_id= req.params.id
         const updated_cost=req.body.cost
-        await Expenses.update({cost:updated_cost} ,{where:{id:edit_id}},{transaction:t})
+        const expense=await Expenses.findOne({where:{id:exp_id}},{transaction:t})
+        const prev_cost=expense.cost
+        await expense.update({cost:updated_cost} ,{where:{id:exp_id_id}},{transaction:t})
         const user=await Users.findOne({where:{id:req.user.id}})
         const old_total=user.totalExpense
-        const new_total=Number(old_total)+Number(updated_cost)
+        const new_total=Number(old_total)+Number(updated_cost)-Number(prev_cost)
         await user.update({totalExpense:new_total},{where:{id:req.user.id}},{transaction:t})
         await t.commit()
         return res.status(200).json({message:'Successfully updated resource'})
@@ -109,18 +111,11 @@ exports.updateExpense=async(req,res)=>{
 }
 
 exports.getEditExpense=async(req,res,next)=>{
-    const t=await db.transaction()
     try{
         const exp_id=req.params.id;
         const exp=await Expenses.findOne({where:{id:exp_id}})
-        const user=await Users.findByPk(req.user.id)
-        const oldTotal=user.totalExpense
-        const newTotal=Number(oldTotal)-Number(exp.cost)
-        await user.update({totalExpense:newTotal},{where:{id:req.user.id}},{transaction:t})
-        await t.commit()
         return res.status(200).json({data:exp,exp_id:exp_id});
     }catch(err){
-        await t.rollback()
         console.log(err)
         return res.status(500).json({message:'Internal server error',err:err})
     }
