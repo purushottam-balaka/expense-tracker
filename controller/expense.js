@@ -45,8 +45,7 @@ exports.getExpenses=async(req,res,next)=>{
             offset: (page-1)*ITEMS_PER_PAGE,
             limit:ITEMS_PER_PAGE,
             where:{UserId:req.user.id},
-        })
-         
+        })    
     })
     .then((item)=>{
         res.status(200).json({ 
