@@ -34,6 +34,7 @@ exports.addExpense=async(req,res)=>{
 
 exports.getExpenses=async(req,res,next)=>{
     try{
+    console.log(+req.query.rows)
     const ITEMS_PER_PAGE=+req.query.rows
     const page= +req.query.page || 1
     let totalItems;
