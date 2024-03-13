@@ -1,10 +1,5 @@
 const Razorpay = require('razorpay');
 const Orders=require('../model/order');
-const Users=require('../model/users')
-const Expenses=require('../model/expenses')
-const fs=require('fs')
-const path=require('path')
-const sequelize=require('sequelize')
 
 exports.purchagePremium=async (req,res,next)=>{
 try{    

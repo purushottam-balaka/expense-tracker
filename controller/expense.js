@@ -2,7 +2,6 @@ const Users=require('../model/users');
 const Expenses=require('../model/expenses');
 const db=require('../util/database')
 const sequelize=require('sequelize')
-// const path=require('../util/path')
 const path=require('path')
 const fs=require('fs')
 
@@ -168,7 +167,6 @@ exports.downloadExpenses=async(req,res)=>{
         }
         const exp=await Expenses.findAll({where:{userId:req.user.id}})
         const stringifiedExpenses=JSON.stringify(exp);
-        // console.log('filepath',path)
         const filePath=  path.join(__dirname,'../views/expense.txt')
         fs.writeFile(filePath,stringifiedExpenses,(err)=>{
             if(err){
