@@ -29,7 +29,8 @@ exports.addExpense=async(req,res)=>{
         await t.commit()
         return res.status(201).json({message:'Expense added successfully'})
     }catch(err){
-        await t.rollback()
+        await t.
+        rollback()
         console.log(err)
         return res.status(500).json({message:'Internal server error when adding expense',err:err});
     }
